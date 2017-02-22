@@ -86,7 +86,10 @@ The final step was to run the simulator to see how well the car was driving arou
 
 ####2. Final Model Architecture
 
-The final model architecture consisted of a convolution neural network with the following layers and layer sizes: FeatureExtraction(InceptionV3,final layer dropout=0.5) -\> \n FullyConnected(1024,ReLu,dropout=0.5) -\> \n FullyConnected(512,ReLu,dropout=0.5) -\> \n Output(1)
+The final model architecture consisted of a convolution neural network with the following layers and layer sizes: FeatureExtraction(InceptionV3,final layer dropout=0.5) -\> 
+FullyConnected(1024,ReLu,dropout=0.5) -\> 
+FullyConnected(512,ReLu,dropout=0.5) -\> 
+Output(1)
 
 
 ####3. Creation of the Training Set & Training Process
