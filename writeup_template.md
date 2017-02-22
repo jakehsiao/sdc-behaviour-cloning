@@ -1,11 +1,5 @@
 #**Behavioral Cloning** 
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
 **Behavioral Cloning Project**
 
 The goals / steps of this project are the following:
@@ -92,25 +86,14 @@ The final step was to run the simulator to see how well the car was driving arou
 
 ####2. Final Model Architecture
 
-The final model architecture consisted of a convolution neural network with the following layers and layer sizes: FeatureExtraction(InceptionV3,final layer dropout=0.5) -\> FullyConnected(1024,ReLu,dropout=0.5) -\> FullyConnected(512,ReLu,dropout=0.5) -\> Output(1)
+The final model architecture consisted of a convolution neural network with the following layers and layer sizes: FeatureExtraction(InceptionV3,final layer dropout=0.5) -\> \n FullyConnected(1024,ReLu,dropout=0.5) -\> \n FullyConnected(512,ReLu,dropout=0.5) -\> \n Output(1)
 
-![alt text][image1]
 
 ####3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I used the sample data provided by udacity.
 
-![alt text][image2]
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-
 To augment the data set, I also flipped images and angles thinking that this would increase the number of records in dataset. 
-
-![alt text][image6]
-![alt text][image7]
-
 
 After the collection process, I had 8036*3*2 number of data points. I then preprocessed this data by my preprocess funtion.
 
