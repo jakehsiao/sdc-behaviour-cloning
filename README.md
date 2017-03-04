@@ -34,6 +34,8 @@ My project includes the following files:
 * model.h5 containing a trained convolution neural network 
 * writeup_report.md or writeup_report.pdf summarizing the results
 
+**NOTE**: My model has trained on cloud 5 epoches with 20k data points per epoch. However the training log was not updated to my notebook so it shows 2 epoches with 20 data which is used to test the function in my own computer.
+
 ####2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
