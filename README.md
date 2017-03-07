@@ -12,9 +12,9 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
+[image1]: ./examples/model.png "Model Visualization"
+[image2]: ./examples/train_image.png "Train Images"
+[image3]: ./examples/hist.png "Hist Image"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
@@ -50,9 +50,12 @@ The model.ipynb file contains the code for training and saving the convolution n
 
 ####1. An appropriate model architecture has been employed
 
-My model consists of a transferred convolution neural network with InceptionV3 and fully-connected layers.
+My model is nvidia end-to-end model(http://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars).
 
 The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a preprocess function. 
+
+Here is the visualization of my model:
+![alt text][image1]
 
 ####2. Attempts to reduce overfitting in the model
 
@@ -63,10 +66,15 @@ The model was trained and validated on different data sets to ensure that the mo
 ####3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually.
+If I gonna tune the model, I would use learning rate that decrease exponentially down the epoches.
 
 ####4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road, to augument the data, I also add horizontal flip to data to double the number of records in dataset.
+![alt text][image2]
+
+However, one further improvement that would be made is balancing the training data. The histogram below shows that the distribution training labels is unbalanced.
+![alt text][image3]
 
 For details about how I created the training data, see the next section. 
 
@@ -74,7 +82,7 @@ For details about how I created the training data, see the next section.
 
 ####1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to use transfer learning.
+The overall strategy for deriving a model architecture was to use end-to-end model developed by Nvidia.
 
 My first step was to use a convolution neural network model that has trained on imagenet. I thought this model might be appropriate because the pre-trained network is robust enough to extract the useful features for steering angle prediction.
 
@@ -86,12 +94,15 @@ Then I trained the model on AWS to save time.
 
 The final step was to run the simulator to see how well the car was driving around track one. The vehicle is able to drive autonomously around the track without leaving the road.
 
+However, the transfer-learning approach is not robust for this project. I tried InceptionV3 as feature extractor and it leads to a heavy model that took plenty to time to train. And the performance was not good, 0.02 val loss, comparing to 0.01 val loss of end-to-end model which used much less time to train.
+
 ####2. Final Model Architecture
 
 The final model architecture consisted of a convolution neural network with the following layers and layer sizes: FeatureExtraction(InceptionV3,final layer dropout=0.5) -\> 
 FullyConnected(1024,ReLu,dropout=0.5) -\> 
 FullyConnected(512,ReLu,dropout=0.5) -\> 
 Output(1)
+![alt text][image1]
 
 
 ####3. Creation of the Training Set & Training Process
@@ -100,7 +111,7 @@ To capture good driving behavior, I used the sample data provided by udacity.
 
 To augment the data set, I also flipped images and angles thinking that this would increase the number of records in dataset. 
 
-After the collection process, I had 8036*3*2 number of data points. I then preprocessed this data by my preprocess funtion.
+After the collection process, I had 48216 number of data points. I then preprocessed this data by my preprocess funtion.
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
