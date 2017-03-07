@@ -50,7 +50,7 @@ The model.ipynb file contains the code for training and saving the convolution n
 
 ####1. An appropriate model architecture has been employed
 
-My model consists of a transferred convolution neural network with InceptionV3 and fully-connected layers.
+My model is nvidia end-to-end model(http://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars).
 
 The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a preprocess function. 
 
@@ -74,7 +74,7 @@ For details about how I created the training data, see the next section.
 
 ####1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to use transfer learning.
+The overall strategy for deriving a model architecture was to use end-to-end model developed by Nvidia.
 
 My first step was to use a convolution neural network model that has trained on imagenet. I thought this model might be appropriate because the pre-trained network is robust enough to extract the useful features for steering angle prediction.
 
@@ -85,6 +85,8 @@ To combat the overfitting, I modified the model so that dropout layers are added
 Then I trained the model on AWS to save time.
 
 The final step was to run the simulator to see how well the car was driving around track one. The vehicle is able to drive autonomously around the track without leaving the road.
+
+However, the transfer-learning approach is not robust for this project. I tried InceptionV3 as feature extractor and it leads to a heavy model that took plenty to time to train. And the performance was not good, 0.02 val loss, comparing to 0.01 val loss of end-to-end model which used much less time to train.
 
 ####2. Final Model Architecture
 
@@ -100,7 +102,7 @@ To capture good driving behavior, I used the sample data provided by udacity.
 
 To augment the data set, I also flipped images and angles thinking that this would increase the number of records in dataset. 
 
-After the collection process, I had 8036*3*2 number of data points. I then preprocessed this data by my preprocess funtion.
+After the collection process, I had 48216 number of data points. I then preprocessed this data by my preprocess funtion.
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
